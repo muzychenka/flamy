@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model attachments {
+  id     BigInt    @id @default(autoincrement())
+  file   String @db.VarChar(255)
+  userId BigInt
+  type   String @db.VarChar(16)
+  time   Int
+}
+
+model matches {
+  id           BigInt      @id @default(autoincrement())
+  firstUserId  BigInt
+  secondUserId BigInt
+  isConfirmed  Boolean?
+  message      String   @db.Text
+}
+
+model users {
+  id          BigInt     @id
+  name        String? @db.VarChar(32)
+  age         Int?
+  description String? @db.Text
+  city        String? @db.VarChar(64)
+  sex         Int?
+  lookingFor  Int?
+  ageRange    String? @db.VarChar(16)
+  disabled    Boolean @default(false)
+  lat         Float?  @db.Float
+  lng         Float?  @db.Float
+  premium     Int     @default(0)
+}

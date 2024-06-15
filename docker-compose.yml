@@ -1,0 +1,26 @@
+services:
+    db:
+        image: mysql:8.0
+        restart: unless-stopped
+        container_name: db
+        environment:
+            - MYSQL_USER=flamy
+            - MYSQL_PASSWORD=flamy
+            - MYSQL_DATABASE=flamy
+            - MYSQL_ROOT_PASSWORD=flamy
+        networks:
+            - app
+    flamy:
+        build: .
+        container_name: flamy
+        env_file: .env.development
+        volumes:
+            - .:/flamy
+        depends_on:
+            - db
+        networks:
+            - app
+        command: sh -c "npx prisma generate && npx prisma migrate deploy && pnpm run dev"
+
+networks:
+    app:
