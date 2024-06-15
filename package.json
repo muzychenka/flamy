@@ -6,7 +6,7 @@
     "scripts": {
         "build": "npx tsc",
         "start": "npm run build && npm run prod",
-        "prod": "NODE_ENV=production node dist/app.js",
+        "production": "NODE_ENV=production node dist/app.js",
         "dev": "NODE_ENV=development nodemon ./app.ts",
         "format": "prettier --write ./**/*.{ts}"
     },
