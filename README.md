@@ -34,3 +34,15 @@ pnpm run dev
 pnpm run build
 pnpm run production
 ```
+
+# Локальный запуск через Docker
+Сделайте сборку контейнеров:
+
+```
+docker compose --env-file .env.development build
+```
+
+Поднимите контейнеры:
+```
+docker compose up
+```
